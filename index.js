@@ -10,6 +10,7 @@ mongoose.connect(mongoURI, {
 .then(() => console.log('MongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err));
 
+const port = process.env.PORT || 3000;
 
 // Create a schema and model for Todo items
 const todoSchema = new mongoose.Schema({
