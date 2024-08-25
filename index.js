@@ -1,15 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/todoDB';
 const app = express();
-const port = process.env.PORT || 3000;
-
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/todoDB', {
+mongoose.connect(mongoURI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+  useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB connected successfully'))
+.catch(err => console.error('MongoDB connection error:', err));
+
 
 // Create a schema and model for Todo items
 const todoSchema = new mongoose.Schema({
